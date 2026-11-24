@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#101722">
+<title>CZZIN TRICK</title>
+<style>
+:root{--gold:#ffd34f;--blue:#63c7ff;--bg:#0c1420;--panel:#172536;--muted:#aab8c8}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% 0,#233c54 0,#0c1420 48%);color:#f4f7fb;font-family:system-ui,Arial,sans-serif;min-height:100vh;padding:18px}
+.wrap{max-width:480px;margin:auto}.top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+h1{font-size:25px;margin:0;color:var(--gold);letter-spacing:1px}.sub{color:var(--muted);font-size:12px;margin-top:4px}
+.pill{border:1px solid #6b839d;border-radius:30px;padding:6px 10px;font-size:11px;color:var(--blue)}
+.hero{margin:18px 0 14px;padding:18px;border:1px solid #8e7130;border-radius:20px;background:linear-gradient(130deg,#283b4e,#111b29);position:relative;overflow:hidden}
+.hero:after{content:"⚡";position:absolute;right:16px;top:12px;font-size:66px;opacity:.14}
+.hero b{color:var(--gold);font-size:18px}.hero p{margin:6px 0 0;color:#c5d3e0;font-size:13px;max-width:80%}
+.card{background:rgba(23,37,54,.96);border:1px solid #30465d;border-radius:18px;padding:16px;margin:12px 0}
+h2{font-size:16px;margin:0 0 12px;color:var(--gold)}
+button{border:0;border-radius:12px;padding:13px 14px;font-weight:750;font-size:14px;cursor:pointer}
+.primary{background:linear-gradient(100deg,#ffd34f,#f0a928);color:#17202b;width:100%}
+.secondary{background:#263c52;color:#eaf4ff;border:1px solid #45617b}
+.row{display:flex;gap:10px;align-items:center;justify-content:space-between}
+.switch{min-width:66px}.switch.on{background:#23694e;color:#fff}.switch.off{background:#263c52;color:#dce8f4}
+.small{font-size:12px;color:var(--muted);line-height:1.45}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat{background:#0e1926;border-radius:12px;padding:12px}.stat span{display:block;color:var(--muted);font-size:11px}.stat strong{font-size:22px;color:#fff}
+.note{font-size:11px;color:#aab8c8;line-height:1.5;margin-top:12px}
+label{font-size:12px;color:#c9d6e4;display:block;margin:10px 0 5px}
+input[type=range]{width:100%;accent-color:var(--gold)}
+footer{text-align:center;color:#8295a9;font-size:11px;padding:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><div><h1>CZZIN TRICK ⚡</h1><div class="sub">MINATO EDITION • FREE FIRE NORMAL</div></div><div class="pill">PAINEL DEMO</div></div>
+  <section class="hero"><b>Controle sua sensibilidade</b><p>Gere uma sugestão equilibrada e aplique os valores manualmente nas configurações do jogo.</p></section>
+
+  <section class="card">
+    <h2>🚀 Iniciar jogo</h2>
+    <button class="primary" id="openGame">ABRIR FREE FIRE</button>
+    <p class="note">Se o botão não abrir o jogo, abra o Free Fire pelo ícone normal do celular.</p>
+  </section>
+
+  <section class="card">
+    <h2>🎯 Criador de sensibilidade</h2>
+    <div class="small">Toque no botão para criar uma configuração inicial. Os valores são sugestões, não alteram o jogo automaticamente.</div>
+    <div class="grid" style="margin-top:13px">
+      <div class="stat"><span>Geral</span><strong id="geral">—</strong></div>
+      <div class="stat"><span>Ponto vermelho</span><strong id="red">—</strong></div>
+      <div class="stat"><span>Mira 2x</span><strong id="x2">—</strong></div>
+      <div class="stat"><span>Mira 4x</span><strong id="x4">—</strong></div>
+      <div class="stat"><span>AWM</span><strong id="awm">—</strong></div>
+      <div class="stat"><span>Olhadinha</span><strong id="look">—</strong></div>
+    </div>
+    <button class="primary" id="generate" style="margin-top:14px">✨ GERAR SENSI</button>
+    <p id="profile" class="small" style="margin-bottom:0">Perfil: equilibrado • ajuste fino depende do seu jeito de jogar.</p>
+  </section>
+
+  <section class="card">
+    <h2>⚙️ Ajustes de controle</h2>
+    <div class="row"><div><b>Estabilizador (guia)</b><div class="small">Dicas para reduzir movimentos bruscos</div></div><button class="switch off" id="stabilizer">OFF</button></div>
+    <div class="row" style="margin-top:14px"><div><b>Mira leve (guia)</b><div class="small">Sugestão de controle mais suave</div></div><button class="switch off" id="light">OFF</button></div>
+    <div class="note" id="tips">Ative uma opção para ver dicas de configuração. Estes controles não interferem no Free Fire.</div>
+  </section>
+
+  <section class="card">
+    <h2>📱 Ajuste fino</h2>
+    <label for="style">Seu estilo de sensibilidade: <b id="styleName">Equilibrada</b></label>
+    <input id="style" type="range" min="0" max="2" value="1">
+    <div class="row small"><span>Mais controlada</span><span>Mais rápida</span></div>
+    <p class="note">Depois de aplicar a sugestão no jogo, teste no campo de treinamento e mude aos poucos. Não existe uma sensibilidade perfeita para todos.</p>
+  </section>
+  <footer>CZZIN TRICK • Interface demonstrativa • Sem cheats ou alterações no jogo</footer>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+function setToggle(id,on){const b=$(id);b.classList.toggle('on',on);b.classList.toggle('off',!on);b.textContent=on?'ON':'OFF';}
+let stab=false,light=false;
+$('stabilizer').onclick=()=>{stab=!stab;setToggle('stabilizer',stab);$('tips').textContent=stab?'Dica: reduza um pouco a sensibilidade Geral se a mira estiver passando do alvo; teste em pequenas etapas.':'Ative uma opção para ver dicas de configuração. Estes controles não interferem no Free Fire.';};
+$('light').onclick=()=>{light=!light;setToggle('light',light);$('tips').textContent=light?'Dica: experimente começar com Ponto vermelho um pouco abaixo da Geral e ajuste no treinamento.':'Ative uma opção para ver dicas de configuração. Estes controles não interferem no Free Fire.';};
+$('style').oninput=()=>{$('styleName').textContent=['Controlada','Equilibrada','Rápida'][$('style').value];};
+function generate(){
+ const mode=+$('style').value;
+ const bases=[
+ [88,82,76,66,34,72],
+ [94,88,82,72,40,78],
+ [100,94,88,78,46,84]
+ ][mode];
+ const vals=bases.map((v,i)=>Math.max(0,Math.min(200,v+Math.floor(Math.random()*7)-3)));
+ ['geral','red','x2','x4','awm','look'].forEach((id,i)=>$(id).textContent=vals[i]);
+ $('profile').textContent='Perfil gerado: '+['controlado','equilibrado','rápido'][mode]+'. Use como ponto de partida e ajuste no treinamento.';
+}
+$('generate').onclick=generate;
+$('openGame').onclick=()=>{
+  // Android package ID of the standard Free Fire app.
+  location.href='intent://launch/#Intent;scheme=android-app;package=com.dts.freefireth;end';
+  setTimeout(()=>{ /* fallback remains the normal app icon if the intent is unavailable */ },700);
+};
+generate();
+</script>
+</body></html>
